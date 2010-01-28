@@ -1,7 +1,7 @@
 Name:		otrs
 Version:	2.4.6
 Release:	%mkrel 1
-Summary:    	The Open Ticket Request System.
+Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
 URL:        	http://www.otrs.com
