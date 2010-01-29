@@ -1,6 +1,6 @@
 Name:		otrs
 Version:	2.4.6
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -10,27 +10,28 @@ Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
 AutoReqProv: 0
 #BuildRequires:  openssl-devel >= 0.9.7
 Requires:	apache-mod_perl
-#Requires:	perl-CGI
-#Requires:	perl-DBI
-#Requires:	perl-DBD-mysql
+Requires:	perl-CGI
+Requires:	perl-DBI
+Requires:	perl-DBD-mysql
 Requires:	perl-Digest-MD5
 Requires:	perl-MIME-Base64
 Requires:	perl-MIME-tools
 Requires:	perl-Net-DNS
-#Requires:	perl-Authen-SASL
+Requires:	perl-Authen-SASL
 Suggests:	perl-GDTextUtil
 Suggests:	perl-GDGraph 
 Suggests:	perl-PDF-API2
-#Requires:	perl-Compress-Raw-Zlib
+Requires:	perl-Compress-Raw-Zlib
 Requires:	MySQL-server
 Requires:	perl-Date-Calc
-#Suggests:	perl-IO-Socket-SSL
+Suggests:	perl-IO-Socket-SSL
 Suggests:	perl-Encode-HanExtra
-#Suggests:	perl-Net-IMAP-Simple-SSL
-#Suggests:	perl-ldap
-#Suggests:	perl-SOAP-Lite
-#Suggests:	perl-Apache-DBI
-#Suggests:	perl-Net-SMTP-SSL
+Suggests:	perl-Net-IMAP-Simple-SSL
+Suggests:	perl-ldap
+Suggests:	perl-SOAP-Lite
+Suggests:	perl-Apache-DBI
+Suggests:	perl-Net-SMTP-SSL
+Suggests:	perl-Authen-Radius
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
 
