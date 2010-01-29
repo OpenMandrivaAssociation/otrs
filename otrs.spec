@@ -1,11 +1,13 @@
 Name:		otrs
 Version:	2.4.6
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
 URL:        	http://www.otrs.com
 Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
+# Disable Auto requires/provides as it conflicts with a lot of perl rpms
+AutoReqProv: 0
 #BuildRequires:  openssl-devel >= 0.9.7
 Requires:	apache-mod_perl
 #Requires:	perl-CGI
