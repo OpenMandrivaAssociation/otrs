@@ -1,6 +1,6 @@
 Name:		otrs
-Version:	2.4.6
-Release:	%mkrel 3
+Version:	2.4.7
+Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -8,7 +8,6 @@ URL:        	http://www.otrs.com
 Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
 # Disable Auto requires/provides as it conflicts with a lot of perl rpms
 AutoReqProv: 0
-#BuildRequires:  openssl-devel >= 0.9.7
 Requires:	apache-mod_perl
 Requires:	perl-CGI
 Requires:	perl-DBI
@@ -32,32 +31,18 @@ Suggests:	perl-SOAP-Lite
 Suggests:	perl-Apache-DBI
 Suggests:	perl-Net-SMTP-SSL
 Suggests:	perl-Authen-Radius
+Suggests:	procmail
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
 
-#Provides:     otrs
 #Requires:     apache2  mysql mysql-client perl-Msql-Mysql-modules mysql-shared procmail perl-libwww-perl
+
 
 
 %description
 The Open Ticket Request System (http://otrs.org/) is a web based ticket system.
 
 Feedback: feedback@otrs.org
-
-
-Authors:
---------
-  Carsten Gross <carsten at siski.de>
-  Christian Schoepplein <cs at otrs.de>
-  Franz Breu <breu.franz at bogen.net>
-  Fred van Dijk <fvandijk at marklin.nl>
-  Lars M�LLER <lars at m5r.de>
-  Nicolas Goralski <ngoralski at oceanet-technology.com>
-  Richard Kammermayer <rk at otrs.de>
-  Stefan Rother <sr at otrs.de>
-  Thomas Raith <tr at otrs.de>
-  Vladimir Gerdjikov <gerdjikov at gerdjikovs.net>
-  Martin Edenhofer <me at otrs.de>
 
   OTRS is an Open source Ticket Request System with many features to manage
   customer telephone calls and e-mails. It is distributed under the GNU
