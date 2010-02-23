@@ -1,13 +1,15 @@
+%define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.
+%define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	2.4.7
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
 URL:        	http://www.otrs.com
 Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
 # Disable Auto requires/provides as it conflicts with a lot of perl rpms
-AutoReqProv: 0
+AutoReqProv: 1
 Requires:	apache-mod_perl
 Requires:	perl-CGI
 Requires:	perl-DBI
