@@ -1,9 +1,9 @@
 %define _exclude_files_from_autoprov %{_var}/www/otrs/Kernel/cpan-lib
-%define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.
+%define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl\(
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	2.4.7
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
