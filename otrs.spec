@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	2.4.7
-Release:	%mkrel 5
+Release:	%mkrel 6
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -196,8 +196,11 @@ EOF
 %post
 %{_var}/www/otrs/bin/SetPermissions.sh %{_var}/www/otrs otrs apache otrs apache
 %{_var}/www/otrs/var/cron
-for foo in *.dist; do cp $foo ‘basename $foo .dist‘; done
+for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/bin/Cron.sh start otrs
+%if %mdkversion < 201010
+%_post_webapp
+%endif
 
 %postun
 %_postun_userdel otrs
