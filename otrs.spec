@@ -2,7 +2,7 @@
 %define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl.Algorithm|perl.Apache|perl.Authen|perl.Crypt|perl.Date|perl.File|perl.IO|perl.MIME|perl.Mail|perl.Net|perl.Text|perl.XML
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
-Version:	2.4.9
+Version:	3.0.10
 Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
@@ -217,26 +217,29 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0755,root,root)
-%exclude %{_var}/www/otrs/doc/* 
-%exclude %{_var}/www/otrs/doc/manual/* 
-%exclude %{_var}/www/otrs/ARCHIVE 
-%exclude %{_var}/www/otrs/CHANGES 
-%exclude %{_var}/www/otrs/COPYING 
-%exclude %{_var}/www/otrs/COPYING-Third-Party 
-%exclude %{_var}/www/otrs/CREDITS
-%exclude %{_var}/www/otrs/INSTALL 
-%exclude %{_var}/www/otrs/INSTALL.RedHat 
-%exclude %{_var}/www/otrs/INSTALL.SuSE 
-%exclude %{_var}/www/otrs/README 
-%exclude %{_var}/www/otrs/README.database 
-%exclude %{_var}/www/otrs/README.webserver
-%exclude %{_var}/www/otrs/TODO 
-%exclude %{_var}/www/otrs/UPGRADING
-
 %doc doc/* doc/manual/* ARCHIVE CHANGES COPYING COPYING-Third-Party CREDITS
 %doc INSTALL INSTALL.RedHat INSTALL.SuSE README README.database README.webserver 
 %doc TODO UPGRADING
-
+%dir %{_var}/www/otrs/doc/
+%dir %{_var}/www/otrs/doc/manual/
+%{_var}/www/otrs/doc/* 
+%{_var}/www/otrs/doc/manual/* 
+%{_var}/www/otrs/ARCHIVE 
+%{_var}/www/otrs/CHANGES 
+%{_var}/www/otrs/COPYING 
+%{_var}/www/otrs/COPYING-Third-Party 
+%{_var}/www/otrs/CREDITS
+%{_var}/www/otrs/Custom/README
+%{_var}/www/otrs/INSTALL 
+%{_var}/www/otrs/INSTALL.RedHat 
+%{_var}/www/otrs/INSTALL.SuSE 
+%{_var}/www/otrs/README 
+%{_var}/www/otrs/README.database 
+%{_var}/www/otrs/README.webserver
+%{_var}/www/otrs/TODO 
+%{_var}/www/otrs/UPGRADING
+%dir %{_var}/www/otrs/var/fonts/
+%{_var}/www/otrs/var/fonts/*
 %{_var}/www/otrs/RELEASE
 %config(noreplace) %{_webconfdir}/webapps.d/otrs.conf
 %config(noreplace) %{_var}/www/otrs/Kernel/Config.pm
@@ -245,7 +248,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_var}/www/otrs/.fetchmailrc
 %config(noreplace) %{_var}/www/otrs/.mailfilter
 %config(noreplace) %{_var}/www/otrs/Kernel/Output/HTML/Standard/*.dtl
-%config(noreplace) %{_var}/www/otrs/Kernel/Output/HTML/Lite/*.dtl
+#config(noreplace) %{_var}/www/otrs/Kernel/Output/HTML/Lite/*.dtl
 %config(noreplace) %{_var}/www/otrs/Kernel/Language/*.pm
 %config(noreplace) %{_var}/www/otrs/var/cron/*
 %config(noreplace) %{_var}/www/otrs/var/logo-otrs.png
@@ -267,13 +270,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_var}/www/otrs/Kernel/Output/
 %dir %{_var}/www/otrs/Kernel/Output/HTML/
 %dir %{_var}/www/otrs/Kernel/Output/HTML/Standard/
-%dir %{_var}/www/otrs/Kernel/Output/HTML/Lite/
+#dir %{_var}/www/otrs/Kernel/Output/HTML/Lite/
 %{_var}/www/otrs/Kernel/Output/HTML/*.pm
 %{_var}/www/otrs/Kernel/System*
 %{_var}/www/otrs/bin*
 %{_var}/www/otrs/scripts*
 %dir %{_var}/www/otrs/var/
-%dir %{_var}/www/otrs/var/packages/*.opm
+%dir %{_var}/www/otrs/var/packages/
+%{_var}/www/otrs/var/packages/*.opm
 %dir %{_var}/www/otrs/var/article/
 %{_var}/www/otrs/var/httpd/
 %dir %{_var}/www/otrs/var/log/
@@ -284,7 +288,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_var}/www/otrs/var/stats/
 %{_var}/www/otrs/var/stats/*.xml
 %dir %{_var}/www/otrs/var/tmp/Cache
-%dir %{_var}/www/otrs/var/pics/stats/
+#dir %{_var}/www/otrs/var/pics/stats/
 
 %{_var}/www/otrs/Kernel/cpan-lib*
 
