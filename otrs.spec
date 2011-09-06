@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	3.0.10
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -57,14 +57,8 @@ Requires:	perl(Text::Diff)
 Requires:	perl(XML::FeedPP)
 Requires:	perl(XML::Parser::Lite)
 
-
-
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
-
-#Requires:     apache2  mysql mysql-client perl-Msql-Mysql-modules mysql-shared procmail perl-libwww-perl
-
-
 
 %description
 The Open Ticket Request System (http://otrs.org/) is a web based ticket system.
@@ -226,18 +220,21 @@ EOF
 %{_var}/www/otrs/var/cron
 for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/bin/Cron.sh start otrs
-%if %mdkversion < 201010
-%_post_webapp
+%if "%{distribution}" == "Mandriva Linux"
+	%if %mdkversion < 201010
+	%_post_webapp
+	%endif
 %endif
 
 %postun
 %_postun_userdel otrs
 %_postun_groupdel otrs
 
-%if %mdkversion < 201010
-%_postun_webapp
+%if "%{distribution}" == "Mandriva Linux"
+	%if %mdkversion < 201010
+	%_postun_webapp
+	%endif
 %endif
-
 
 
 %clean
