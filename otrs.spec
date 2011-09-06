@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	3.0.10
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -35,6 +35,30 @@ Suggests:	perl-Apache-DBI
 Suggests:	perl-Net-SMTP-SSL
 Suggests:	perl-Authen-Radius
 Suggests:	procmail
+Requires:	perl(Algorithm::Diff)
+Requires:	perl(Apache::DBI)
+Requires:	perl(Apache2::Reload)
+Requires:	perl(Authen::SASL)
+Requires:	perl(CGI)
+Requires:	perl(Crypt::PasswdMD5)
+Requires:	perl(Date::Pcalc)
+Requires:	perl(Digest::SHA::PurePerl)
+Requires:	perl(File::Temp)
+Requires:	perl-IO-stringy
+Requires:	perl(JSON::PP)
+Requires:	perl(CSS)
+Requires:	perl(JavaScript)
+Requires:	perl-MIME-tools
+Requires:	perl-MailTools
+Requires:	perl(Net::IMAP::Simple)
+Requires:	perl(Net::SMTP::SSL)
+Requires:	perl(Text::CSV)
+Requires:	perl(Text::Diff)
+Requires:	perl(XML::FeedPP)
+Requires:	perl(XML::Parser::Lite)
+
+
+
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
 
@@ -117,7 +141,11 @@ Feedback: feedback@otrs.org
 %setup
 
 %build
-find  | xargs perl -pi -e "s|/opt|/var/www|g"
+pushd Kernel/cpan-lib/
+rm -rf Algorithm/ Apache Apache2 Authen/ CGI* Crypt/ Date/ Digest/ File/ IO/ JSON*  CSS/ JavaScript/ MIME/ Mail/ Net/IMAP/ Net/SMTP/ Text/ XML/
+popd
+
+find  -type f | xargs perl -pi -e "s|/opt|/var/www|g"
 # copy config file
 cp Kernel/Config.pm.dist Kernel/Config.pm
 cd Kernel/Config/ && for foo in *.dist; do cp $foo `basename $foo .dist`; done && cd ../../
@@ -223,12 +251,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_var}/www/otrs/doc/
 %dir %{_var}/www/otrs/doc/manual/
 %{_var}/www/otrs/doc/* 
-%{_var}/www/otrs/doc/manual/* 
 %{_var}/www/otrs/ARCHIVE 
 %{_var}/www/otrs/CHANGES 
 %{_var}/www/otrs/COPYING 
 %{_var}/www/otrs/COPYING-Third-Party 
 %{_var}/www/otrs/CREDITS
+%dir %{_var}/www/otrs/Custom/
 %{_var}/www/otrs/Custom/README
 %{_var}/www/otrs/INSTALL 
 %{_var}/www/otrs/INSTALL.RedHat 
