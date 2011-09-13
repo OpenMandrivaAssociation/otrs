@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	3.0.10
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -309,7 +309,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_var}/www/otrs/var/sessions/
 %dir %{_var}/www/otrs/var/spool/
 %dir %{_var}/www/otrs/var/cron/
-%dir %{_var}/www/otrs/var/tmp/
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/tmp/
 %dir %{_var}/www/otrs/var/stats/
 %{_var}/www/otrs/var/stats/*.xml
 %dir %{_var}/www/otrs/var/tmp/Cache
