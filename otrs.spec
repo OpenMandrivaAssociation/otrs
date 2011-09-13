@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	3.0.10
-Release:	%mkrel 4
+Release:	%mkrel 5
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -216,8 +216,8 @@ EOF
 %{_var}/www/otrs/bin/Cron.sh stop otrs
 
 %post
-%{_var}/www/otrs/bin/SetPermissions.sh %{_var}/www/otrs otrs apache otrs apache
-%{_var}/www/otrs/var/cron
+%{_var}/www/otrs/bin/otrs.SetPermissions.pl  --otrs-user=otrs --web-user=apache --otrs-group=otrs --web-group=apache %{_var}/www/otrs
+cd %{_var}/www/otrs/var/cron
 for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/bin/Cron.sh start otrs
 %if "%{distribution}" == "Mandriva Linux"
@@ -267,7 +267,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/var/fonts/*
 %{_var}/www/otrs/RELEASE
 %config(noreplace) %{_webconfdir}/webapps.d/otrs.conf
-%config(noreplace) %{_var}/www/otrs/Kernel/Config.pm
+%config(noreplace) %attr(0644,otrs,apache) %{_var}/www/otrs/Kernel/Config.pm
 %config(noreplace) %{_var}/www/otrs/Kernel/Config/GenericAgent.pm
 %config(noreplace) %{_var}/www/otrs/.procmailrc
 %config(noreplace) %{_var}/www/otrs/.fetchmailrc
@@ -285,7 +285,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_var}/www/otrs/Kernel/
 %dir %{_var}/www/otrs/Kernel/Config/
 %{_var}/www/otrs/Kernel/Config.pm.dist
-%{_var}/www/otrs/Kernel/Config/Files/
+%attr(0775,otrs,apache) %{_var}/www/otrs/Kernel/Config/Files/
 %{_var}/www/otrs/Kernel/Config/GenericAgent.pm.dist
 %{_var}/www/otrs/Kernel/Config/GenericAgent.pm.examples
 %{_var}/www/otrs/Kernel/Config/Defaults.pm
@@ -298,19 +298,23 @@ rm -rf $RPM_BUILD_ROOT
 #dir %{_var}/www/otrs/Kernel/Output/HTML/Lite/
 %{_var}/www/otrs/Kernel/Output/HTML/*.pm
 %{_var}/www/otrs/Kernel/System*
-%{_var}/www/otrs/bin*
+%attr(0775,otrs,apache) %{_var}/www/otrs/bin*
 %{_var}/www/otrs/scripts*
 %dir %{_var}/www/otrs/var/
 %dir %{_var}/www/otrs/var/packages/
 %{_var}/www/otrs/var/packages/*.opm
-%dir %{_var}/www/otrs/var/article/
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/article/
 %{_var}/www/otrs/var/httpd/
-%dir %{_var}/www/otrs/var/log/
-%dir %{_var}/www/otrs/var/sessions/
-%dir %{_var}/www/otrs/var/spool/
+%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/js/js-cache/
+%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/default
+%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/ivory
+%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/slim
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/log/
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/sessions/
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/spool/
 %dir %{_var}/www/otrs/var/cron/
 %attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/tmp/
-%dir %{_var}/www/otrs/var/stats/
+%attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/stats/
 %{_var}/www/otrs/var/stats/*.xml
 %dir %{_var}/www/otrs/var/tmp/Cache
 #dir %{_var}/www/otrs/var/pics/stats/
