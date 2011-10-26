@@ -3,7 +3,7 @@
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
 Version:	3.0.10
-Release:	%mkrel 5
+Release:	%mkrel 6
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
@@ -24,7 +24,7 @@ Suggests:	perl-GDTextUtil
 Suggests:	perl-GDGraph 
 Suggests:	perl-PDF-API2
 Requires:	perl-Compress-Raw-Zlib
-Requires:	MySQL-server
+Requires:	mysql
 Requires:	perl-Date-Calc
 Suggests:	perl-IO-Socket-SSL
 Suggests:	perl-Encode-HanExtra
