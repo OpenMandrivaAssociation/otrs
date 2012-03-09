@@ -2,7 +2,7 @@
 %define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl.Algorithm|perl.Apache|perl.Authen|perl.Crypt|perl.Date|perl.File|perl.IO|perl.MIME|perl.Mail|perl.Net|perl.Text|perl.XML
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
-Version:	3.0.11
+Version:	3.1.2
 Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
@@ -61,7 +61,7 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
 
 %description
-The Open Ticket Request System (http://otrs.org/) is a web based ticket system.
+The Open Ticket Request System (http://otrs.org/) is a web based ticket system
 
 Feedback: feedback@otrs.org
 
@@ -88,9 +88,12 @@ Feedback: feedback@otrs.org
     - PGP support
     - SMIME support
     - MIME support (attachments)
-    - dispatching of incoming email via email addess or x-header
-    - autoresponders for customers by incoming emails (per queue)
-    - email-notification to the agent by new tickets, follow ups or lock timeouts
+    - dispatching of incoming email via email 
+	addess or x-header
+    - autoresponders for customers by incoming emails 
+	(per queue)
+    - email-notification to the agent by new tickets, 
+	follow ups or lock timeouts
 
    Ticket:
     - custom queue view and queue view of all requests
@@ -120,16 +123,19 @@ Feedback: feedback@otrs.org
     - submitting update-info (via email or webinterface).
     - deadlines for trouble tickets
     - ASP (activ service providing) support
-    - TicketHook free setable like 'Call#', 'MyTicket#', 'Request#' or 'Ticket#'
+    - TicketHook free setable like 'Call#', 'MyTicket#', 'Request#' or 
+	'Ticket#'
     - Ticket number format free setable
     - different levels of permissions/access-rights.
-    - central database, Support of different SQL databases (e. g. MySQL, PostgeSQL, ...)
+    - central database, Support of different SQL databases (e. g. MySQL, 
+	PostgeSQL, ...)
     - user authentication agains database or ldap directory
     - easy to develope you own addon's (OTRS API)
     - easy to write different frontends (e. g. X11, console, ...)
-    - own package manager (e. g. for application modules like webmail, calendar or
+    - own package manager (e. g. for application modules like webmail, 
+	calendar or
        filemanager)
-    - a fast and usefull application
+    - a fast and useful application
 
 %prep
 %setup
@@ -244,24 +250,20 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0755,root,root)
 %doc doc/* doc/manual/* ARCHIVE CHANGES COPYING COPYING-Third-Party CREDITS
 %doc INSTALL INSTALL.RedHat INSTALL.SuSE README README.database README.webserver 
-%doc TODO UPGRADING
+%doc UPGRADING
 %dir %{_var}/www/otrs/doc/
-%dir %{_var}/www/otrs/doc/manual/
-%{_var}/www/otrs/doc/* 
 %{_var}/www/otrs/ARCHIVE 
 %{_var}/www/otrs/CHANGES 
 %{_var}/www/otrs/COPYING 
 %{_var}/www/otrs/COPYING-Third-Party 
 %{_var}/www/otrs/CREDITS
 %dir %{_var}/www/otrs/Custom/
-%{_var}/www/otrs/Custom/README
 %{_var}/www/otrs/INSTALL 
 %{_var}/www/otrs/INSTALL.RedHat 
 %{_var}/www/otrs/INSTALL.SuSE 
 %{_var}/www/otrs/README 
 %{_var}/www/otrs/README.database 
 %{_var}/www/otrs/README.webserver
-%{_var}/www/otrs/TODO 
 %{_var}/www/otrs/UPGRADING
 %dir %{_var}/www/otrs/var/fonts/
 %{_var}/www/otrs/var/fonts/*
@@ -305,10 +307,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/var/packages/*.opm
 %attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/article/
 %{_var}/www/otrs/var/httpd/
-%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/js/js-cache/
-%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/default
-%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/ivory
-%attr(0775,otrs,apache) %{_var}/www/otrs/var/httpd/htdocs/skins/Agent/slim
 %attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/log/
 %attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/sessions/
 %attr(0775,otrs,apache) %dir %{_var}/www/otrs/var/spool/
@@ -321,4 +319,49 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_var}/www/otrs/Kernel/cpan-lib*
 
+%{_var}/www/otrs/Custom/README
+%{_var}/www/otrs/Kernel/GenericInterface/Debugger.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Event/Handler.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Invoker.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Invoker/Test/Test.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Invoker/Test/TestSimple.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Mapping.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Mapping/Simple.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Mapping/Test.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Common.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Session/Common.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Session/SessionCreate.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Test/Test.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Ticket/Common.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Ticket/TicketCreate.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Ticket/TicketGet.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Ticket/TicketSearch.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Operation/Ticket/TicketUpdate.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Provider.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Requester.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Transport.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Transport/HTTP/REST.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Transport/HTTP/SOAP.pm
+%{_var}/www/otrs/Kernel/GenericInterface/Transport/HTTP/Test.pm
+%{_var}/www/otrs/Kernel/Scheduler.pm
+%{_var}/www/otrs/Kernel/Scheduler/TaskHandler.pm
+%{_var}/www/otrs/Kernel/Scheduler/TaskHandler/GenericInterface.pm
+%{_var}/www/otrs/Kernel/Scheduler/TaskHandler/Test.pm
+%{_var}/www/otrs/doc/OTRSDatabaseDiagram.mwb
+%{_var}/www/otrs/doc/OTRSDatabaseDiagram.png
+%{_var}/www/otrs/doc/X-OTRS-Headers.txt
+%{_var}/www/otrs/doc/manual/de/otrs_admin_book.pdf
+%{_var}/www/otrs/doc/manual/en/otrs_admin_book.pdf
+%{_var}/www/otrs/doc/sample_mails/Readme.txt
+%{_var}/www/otrs/doc/sample_mails/test-email-1.box
+%{_var}/www/otrs/doc/sample_mails/test-email-10-ks_c_5601-1987.box
+%{_var}/www/otrs/doc/sample_mails/test-email-2.box
+%{_var}/www/otrs/doc/sample_mails/test-email-3.box
+%{_var}/www/otrs/doc/sample_mails/test-email-4-html.box
+%{_var}/www/otrs/doc/sample_mails/test-email-5-iso-8859-1.box
+%{_var}/www/otrs/doc/sample_mails/test-email-6-euro-utf-8.box
+%{_var}/www/otrs/doc/sample_mails/test-email-7-euro-iso-8859-15.box
+%{_var}/www/otrs/doc/sample_mails/test-email-8-bulgarian-cp1251.box
+%{_var}/www/otrs/doc/sample_mails/test-email-9-html-multicharset.box
 
