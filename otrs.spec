@@ -2,7 +2,7 @@
 %define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl.Algorithm|perl.Apache|perl.Authen|perl.Crypt|perl.Date|perl.File|perl.IO|perl.MIME|perl.Mail|perl.Net|perl.Text|perl.XML
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
-Version:	3.1.3
+Version:	3.1.6
 Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
@@ -286,6 +286,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/.mailfilter.dist
 %dir %{_var}/www/otrs/Kernel/
 %dir %{_var}/www/otrs/Kernel/Config/
+%dir %{_var}/www/otrs/Kernel/GenericInterface/
+%dir %{_var}/www/otrs/Kernel/Scheduler/
 %{_var}/www/otrs/Kernel/Config.pm.dist
 %attr(0775,otrs,apache) %{_var}/www/otrs/Kernel/Config/Files/
 %{_var}/www/otrs/Kernel/Config/GenericAgent.pm.dist
