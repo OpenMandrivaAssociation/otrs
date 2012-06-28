@@ -2,7 +2,7 @@
 %define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl.Algorithm|perl.Apache|perl.Authen|perl.Crypt|perl.Date|perl.File|perl.IO|perl.MIME|perl.Mail|perl.Net|perl.Text|perl.XML
 %define _provides_exceptions %_requires_exceptions
 Name:		otrs
-Version:	3.1.6
+Version:	3.1.7
 Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
