@@ -1,150 +1,30 @@
-%define _exclude_files_from_autoprov %{_var}/www/otrs/Kernel/cpan-lib
-%define _requires_exceptions perl.Kernel\\|perl.HTML..Safe.|perl.Algorithm|perl.Apache|perl.Authen|perl.Crypt|perl.Date|perl.File|perl.IO|perl.MIME|perl.Mail|perl.Net|perl.Text|perl.XML
-%define _provides_exceptions %_requires_exceptions
+%define _requires_exceptions perl(\\(Kernel::.*\\|Win32\\))
+%define _provides_exceptions perl(Kernel::.*)
+
 Name:		otrs
-Version:	3.1.7
+Version:	3.1.11
 Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
 URL:        	http://www.otrs.com
-Source0:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
-# Disable Auto requires/provides as it conflicts with a lot of perl rpms
-AutoReqProv: 1
+Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
 Requires:	apache-mod_perl
-Requires:	perl-CGI
-Requires:	perl-DBI
-Requires:	perl-DBD-mysql
-Requires:	perl-Digest-MD5
-Requires:	perl-MIME-Base64
-Requires:	perl-MIME-tools
-Requires:	perl-Net-DNS
-Requires:	perl-Authen-SASL
-Suggests:	perl-GDTextUtil
-Suggests:	perl-GDGraph 
-Suggests:	perl-PDF-API2
-Requires:	perl-Compress-Raw-Zlib
-Requires:	mysql
-Requires:	perl-Date-Calc
-Suggests:	perl-IO-Socket-SSL
-Suggests:	perl-Encode-HanExtra
-Suggests:	perl-Net-IMAP-Simple-SSL
-Suggests:	perl-ldap
-Suggests:	perl-SOAP-Lite
-Suggests:	perl-Apache-DBI
-Suggests:	perl-Net-SMTP-SSL
-Suggests:	perl-Authen-Radius
 Suggests:	procmail
-Requires:	perl(Algorithm::Diff)
-Requires:	perl(Apache::DBI)
-Requires:	perl(Apache2::Reload)
-Requires:	perl(Authen::SASL)
-Requires:	perl(CGI)
-Requires:	perl(Crypt::PasswdMD5)
-Requires:	perl(Date::Pcalc)
-Requires:	perl(Digest::SHA::PurePerl)
-Requires:	perl(File::Temp)
-Requires:	perl-IO-stringy
-Requires:	perl(JSON::PP)
-Requires:	perl(CSS)
-Requires:	perl(JavaScript)
-Requires:	perl-MIME-tools
-Requires:	perl-MailTools
-Requires:	perl(Net::IMAP::Simple)
-Requires:	perl(Net::SMTP::SSL)
-Requires:	perl(Text::CSV)
-Requires:	perl(Text::Diff)
-Requires:	perl(XML::FeedPP)
-Requires:	perl(XML::Parser::Lite)
-
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildArch:  	noarch
 
 %description
-The Open Ticket Request System (http://otrs.org/) is a web based ticket system
-
-Feedback: feedback@otrs.org
-
-  OTRS is an Open source Ticket Request System with many features to manage
-  customer telephone calls and e-mails. It is distributed under the GNU
-  AFFERO General Public License (AGPL) and tested on Linux, Solaris, AIX,
-  FreeBSD, OpenBSD and Mac OS 10.x. Do you receive many e-mails and want to
-  answer them with a team of agents? You're going to love the OTRS!
-
-  Feature list:
-
-   Web-Interface:
-    - Agent web interface for viewing and working on all customer requests
-    - Admin web interface for changing system things
-    - Customer web interface for viewing and sending infos to the agents
-    - Webinterface with themes support
-    - Multi language support (Brazilian Portuguese, Bulgarian, Dutch, English,
-       Finnish, French, German, Italian and Spanish)
-    - customize the output templates (dtl) release independently
-    - Webinterface with attachment support
-    - easy and logical to use
-
-   Email-Interface:
-    - PGP support
-    - SMIME support
-    - MIME support (attachments)
-    - dispatching of incoming email via email 
-	addess or x-header
-    - autoresponders for customers by incoming emails 
-	(per queue)
-    - email-notification to the agent by new tickets, 
-	follow ups or lock timeouts
-
-   Ticket:
-    - custom queue view and queue view of all requests
-    - Ticket locking
-    - Ticket replies (standard responses)
-    - Ticket autoresponders per queue
-    - Ticket history, evolution of ticket status and actions taken on ticket
-    - abaility to add notes (with different note types) to a ticket
-    - Ticket zoom feature
-    - Tickets can be bounced or forwarded to other email addresses
-    - Ticket can be moved to a different queue (this is helpful if emails are
-       for a specific subject)
-    - Ticket priority
-    - Ticket time accounting
-    - Ticket merge feature
-    - Ticket ACL support
-    - content Fulltext search
-
-   System:
-    - creation and configuration of user accounts, and groups
-    - creation of standard responses
-    - Signature configuration per queue
-    - Salutation configuration per queue
-    - email-notification of administrators
-    - email-notification sent to problem reporter (by create, locked, deleted,
-       moved and closed)
-    - submitting update-info (via email or webinterface).
-    - deadlines for trouble tickets
-    - ASP (activ service providing) support
-    - TicketHook free setable like 'Call#', 'MyTicket#', 'Request#' or 
-	'Ticket#'
-    - Ticket number format free setable
-    - different levels of permissions/access-rights.
-    - central database, Support of different SQL databases (e. g. MySQL, 
-	PostgeSQL, ...)
-    - user authentication agains database or ldap directory
-    - easy to develope you own addon's (OTRS API)
-    - easy to write different frontends (e. g. X11, console, ...)
-    - own package manager (e. g. for application modules like webmail, 
-	calendar or
-       filemanager)
-    - a fast and useful application
+OTRS is the leading open-source Help Desk and IT Service Management (ITSM)
+solution used by thousands of organizations worldwide, enabling transparency
+and collaboration for service desk and customer support teams, including those
+implementing ITIL Best Practices. OTRS Group offers consulting, support,
+customization and hosting services.
 
 %prep
-%setup
+%setup -q
+rm -rf Kernel/cpan-lib
 
 %build
-pushd Kernel/cpan-lib/
-rm -rf Algorithm/ Apache Apache2 Authen/ CGI* Crypt/ Date/ Digest/ File/ IO/ JSON*  CSS/ JavaScript/ MIME/ Mail/ Net/IMAP/ Net/SMTP/ Text/ XML/
-popd
-
 find  -type f | xargs perl -pi -e "s|/opt|/var/www|g"
 # copy config file
 cp Kernel/Config.pm.dist Kernel/Config.pm
@@ -226,28 +106,12 @@ EOF
 cd %{_var}/www/otrs/var/cron
 for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/bin/Cron.sh start otrs
-%if "%{distribution}" == "Mandriva Linux"
-	%if %mdkversion < 201010
-	%_post_webapp
-	%endif
-%endif
 
 %postun
 %_postun_userdel otrs
 %_postun_groupdel otrs
 
-%if "%{distribution}" == "Mandriva Linux"
-	%if %mdkversion < 201010
-	%_postun_webapp
-	%endif
-%endif
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%defattr(0755,root,root)
 %doc doc/* doc/manual/* ARCHIVE CHANGES COPYING COPYING-Third-Party CREDITS
 %doc INSTALL INSTALL.RedHat INSTALL.SuSE README README.database README.webserver 
 %doc UPGRADING
@@ -286,8 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/.mailfilter.dist
 %dir %{_var}/www/otrs/Kernel/
 %dir %{_var}/www/otrs/Kernel/Config/
-%dir %{_var}/www/otrs/Kernel/GenericInterface/
-%dir %{_var}/www/otrs/Kernel/Scheduler/
 %{_var}/www/otrs/Kernel/Config.pm.dist
 %attr(0775,otrs,apache) %{_var}/www/otrs/Kernel/Config/Files/
 %{_var}/www/otrs/Kernel/Config/GenericAgent.pm.dist
@@ -318,8 +180,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/var/stats/*.xml
 %dir %{_var}/www/otrs/var/tmp/Cache
 #dir %{_var}/www/otrs/var/pics/stats/
-
-%{_var}/www/otrs/Kernel/cpan-lib*
 
 %{_var}/www/otrs/Custom/README
 %{_var}/www/otrs/Kernel/GenericInterface/Debugger.pm
@@ -366,4 +226,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_var}/www/otrs/doc/sample_mails/test-email-7-euro-iso-8859-15.box
 %{_var}/www/otrs/doc/sample_mails/test-email-8-bulgarian-cp1251.box
 %{_var}/www/otrs/doc/sample_mails/test-email-9-html-multicharset.box
+
+
 
