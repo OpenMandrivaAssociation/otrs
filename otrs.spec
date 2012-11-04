@@ -111,6 +111,9 @@ for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %_postun_userdel otrs
 %_postun_groupdel otrs
 
+%clean
+[ -d "%{buildroot}" -a "%{buildroot}" != "" ] && %__rm -rf "%{buildroot}"
+
 %files
 %doc doc/* doc/manual/* ARCHIVE CHANGES COPYING COPYING-Third-Party CREDITS
 %doc INSTALL INSTALL.RedHat INSTALL.SuSE README README.database README.webserver 
