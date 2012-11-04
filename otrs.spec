@@ -227,5 +227,23 @@ for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/doc/sample_mails/test-email-8-bulgarian-cp1251.box
 %{_var}/www/otrs/doc/sample_mails/test-email-9-html-multicharset.box
 
+
+
 %changelog
+
+* Sat Nov 03 2012 juancho <juancho> 3.1.11-1.mga2
++ Revision: 312729
+- Update to 3.1.11 to fix CVE-2012-4600, bug# 7527
+
+  + guillomovitch <guillomovitch>
+    - ignore Win32 dependency
+    - drop bundled libs completly
+    - only use automatic perl dependencies, rather than current mix
+    - drop local mysql database dependency
+    - spec cleanup
+    - use reasonable description
+
+* Fri Mar 09 2012 dlucio <dlucio> 3.1.2-1.mga2
++ Revision: 222116
+- imported package otrs
 
