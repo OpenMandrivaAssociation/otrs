@@ -227,5 +227,5 @@ for foo in *.dist; do cp $foo `basename $foo .dist`; done
 %{_var}/www/otrs/doc/sample_mails/test-email-8-bulgarian-cp1251.box
 %{_var}/www/otrs/doc/sample_mails/test-email-9-html-multicharset.box
 
-
+%changelog
 
