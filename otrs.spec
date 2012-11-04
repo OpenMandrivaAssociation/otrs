@@ -243,7 +243,7 @@ for foo in *.dist; do cp $foo `basename $foo .dist`; done
     - spec cleanup
     - use reasonable description
 
-* Fri Mar 09 2012 dlucio <dlucio> 3.1.2-1.mga2
-+ Revision: 222116
-- imported package otrs
+
+
+
 
