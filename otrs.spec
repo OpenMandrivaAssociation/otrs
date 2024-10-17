@@ -7,7 +7,7 @@ Release:	%mkrel 1
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
-URL:        	http://www.otrs.com
+URL:        	https://www.otrs.com
 Source:     	http://ftp.otrs.org/pub/otrs/otrs-%{version}.tar.bz2
 Requires:	apache-mod_perl
 Suggests:	procmail
