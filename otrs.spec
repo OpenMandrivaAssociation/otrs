@@ -3,7 +3,7 @@
 
 Name:		otrs
 Version:	3.1.11
-Release:	%mkrel 1
+Release:	2
 Summary:    	The Open Ticket Request System
 License:    	GPLv3+
 Group:      	Networking/Other
